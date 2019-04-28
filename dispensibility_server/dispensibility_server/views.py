@@ -84,3 +84,13 @@ def dispense_transaction():
                    timestamp=dispenser_transaction_event.timestamp)
 
 
+@app.route('/api/my_product', methods=['GET'])
+def my_product():
+  data = request.get_json()
+  dispenser_id = data.get('dispenser_id', None)
+
+  dispenser = db.session.query(Dispenser).filter(Dispenser.id == dispenser_id).first()
+  product = db.session.query(Product).filter(Product.id == dispenser.product_id).first()
+
+  print(product.to_dict())
+  return jsonify(product.to_dict())
