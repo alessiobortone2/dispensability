@@ -10,6 +10,14 @@ def index():
 @app.route("/myitems")
 def myitems():
     return render_template("myitems.html")
+
+@app.route("/purchase")
+def purchase():
+    return render_template("purchase.html")
+
+@app.route("/additem")
+def additem():
+    return render_template("additem.html")
     
 @app.route('/api/sensor_input', methods=['POST'])
 def sensor_input(input):
