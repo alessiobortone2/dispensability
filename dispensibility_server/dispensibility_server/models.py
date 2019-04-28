@@ -1,47 +1,51 @@
-from flask_sqlalchemy import SQLAlchemy
 from dispensibility_server import app, db
-from sqlalchemy import Column, Integer, String, DateTime, Float, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Integer, String, DateTime, Float, ForeignKey
 
-Base = declarative_base()
-
-class User(Base):
+class User(db.Model):
     __tablename__ = 'user'
-    uid = Column('uid' , Integer, primary_key=True)
-    login = Column('login' , String(255))
-    password = Column('password', String(100))
-    first_name = Column('first_name', String(100))
-    last_name = Column('last_name', String(100))
-    postcode = Column('postcode', String(100))
-    created_on = Column('created_on', DateTime())
+    uid = db.Column('uid' , Integer, primary_key=True)
+    login = db.Column('login' , String(255))
+    password = db.Column('password', String(100))
+    first_name = db.Column('first_name', String(100))
+    last_name = db.Column('last_name', String(100))
+    postcode = db.Column('postcode', String(100))
+    created_on = db.Column('created_on', DateTime())
 
-class Dispenser(Base):
+class Dispenser(db.Model):
   __tablename__ = 'dispenser'
-  id = Column('id', Integer, primary_key=True)
-  product_id = Column('product_id', ForeignKey("product.id"), nullable=False)
-  weight = Column('weight', Integer())
-  timestamp = Column('timestamp', DateTime())
+  id = db.Column('id', Integer, primary_key=True)
+  product_id = db.Column('product_id', ForeignKey("product.id"), nullable=False)
 
-class Product(Base):
+class Product(db.Model):
   __tablename__ = 'product'
-  id = Column('id', Integer, primary_key=True)
-  allergens = Column('allergens', String(1000))
-  description = Column('description', String(1000))
-  price_per_gram = Column('price_per_gram',Float())
+  id = db.Column('id', Integer, primary_key=True)
+  allergens = db.Column('allergens', String(1000))
+  description = db.Column('description', String(1000))
+  density = db.Column('density',Float())
+  price_per_gram = db.Column('price_per_gram',Float())
 
-class Refill(Base):
+class Refill(db.Model):
   __tablename__ = 'refill'
-  id = Column('id', Integer, primary_key=True)
-  dispenser_id = Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
-  product_id = Column('product_id', ForeignKey("product.id"), nullable=False)
-  timestamp = Column('timestamp', DateTime())
+  id = db.Column('id', Integer, primary_key=True)
+  dispenser_id = db.Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
+  product_id = db.Column('product_id', ForeignKey("product.id"), nullable=False)
+  timestamp = db.Column('timestamp', DateTime())
 
-class Transaction(Base):
-  __tablename__ = 'transaction'
-  id = Column('id', Integer, primary_key=True)
-  user_id = Column('user_id', ForeignKey("user.uid"), nullable=False)
-  dispenser_id = Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
-  product_id = Column('product_id', ForeignKey("product.id"), nullable=False)
-  weight = Column('weight', Integer())
-  cost = Column('cost', Float())
-  timestamp = Column('timestamp', DateTime())
+class DispenserTransactionEvent(db.Model):
+  __tablename__ = 'dispenser_transaction_event'
+  id = db.Column('id', Integer, primary_key=True)
+  user_id = db.Column('user_id', ForeignKey("user.uid"), nullable=False)
+  dispenser_id = db.Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
+  event = db.Column('event', String())
+  weight = db.Column('weight', Integer())
+  timestamp = db.Column('timestamp', DateTime())
+
+class UserTransaction(db.Model):
+  __tablename__ = 'user_transaction'
+  id = db.Column('id', Integer, primary_key=True)
+  user_id = db.Column('user_id', ForeignKey("user.uid"), nullable=False)
+  dispenser_id = db.Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
+  product_id = db.Column('product_id', ForeignKey("product.id"), nullable=False)
+  weight = db.Column('weight', Integer())
+  cost = db.Column('cost', Float())
+  timestamp = db.Column('timestamp', DateTime())

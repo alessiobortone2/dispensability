@@ -11,14 +11,20 @@ def index():
 def myitems():
     return render_template("myitems.html")
     
-@app.route('/api/sensor_input', methods=['POST'])
-def sensor_input(input):
+@app.route('/api/dispense_transaction', methods=['POST'])
+def dispense_transaction(input):
     input_json = json.loads(input)
+    dispenser_id = input_json.get('dispenser_id',None)
+    user_id = input_json.get('user_id',None)
+    event = input_json.get('event',None)
     weight = input_json.get('weight',None)
     timestamp = input_json.get('timestamp',None)
 
     assert type(weight).__name__ == 'int', "Weight not integer or is None"
     assert type(timestamp).__name__ == 'str', "Timestamp not integer or is None"
+    assert type(dispenser_id).__name__ == 'int', "Dispenser_id not integer or is None"
+    assert type(user_id).__name__ == 'int', "User_id not integer or is None"
+    assert type(event).__name__ == 'str', "Event not integer or is None"
 
     # TODO: save to db
 
