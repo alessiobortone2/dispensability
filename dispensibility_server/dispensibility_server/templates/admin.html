@@ -19,8 +19,9 @@
                 "user_id":user_id,
                 "event":0,
                 "weight":weight,
-                "timestamp":new Date().toJSON()
-            }
+                "timestamp":new Date().toJSON(),
+                "content": "application/json"
+            } 
         )
 
         $.post(
@@ -30,7 +31,8 @@
                 "user_id":user_id,
                 "event":1,
                 "weight":weight/4,
-                "timestamp":new Date().toJSON()
+                "timestamp":new Date().toJSON(),
+                "content": "application/json"
             }
         )
     }
