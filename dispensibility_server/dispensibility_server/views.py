@@ -28,11 +28,11 @@ def dispense_transaction(input):
     weight = input_json.get('weight',None)
     timestamp = input_json.get('timestamp',None)
 
-    assert type(weight).__name__ == 'int', "Weight not integer or is None"
-    assert type(timestamp).__name__ == 'str', "Timestamp not integer or is None"
     assert type(dispenser_id).__name__ == 'int', "Dispenser_id not integer or is None"
     assert type(user_id).__name__ == 'int', "User_id not integer or is None"
     assert type(event).__name__ == 'str', "Event not integer or is None"
+    assert type(timestamp).__name__ == 'str', "Timestamp not integer or is None"
+    assert type(timestamp).__name__ == 'str', "Timestamp not integer or is None"
 
     # TODO: save to db
 
