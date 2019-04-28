@@ -5,15 +5,15 @@
 {% block page_title %}My Items{% endblock %}
 
 {% block content %}
+{% for product in my_products %}
 <div class="card">
-    {% for product in my_products %}
     <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Use By: 30/4/19</h6>
         <p class="card-text">Weight: {{ product.weight|round(2) }}</p>
         <p class="card-text">Cost: £{{ product.cost|round(2) }}</p>
     </div>
-    {% endfor %}
 </div>
+{% endfor %}
 
 {% endblock %}
