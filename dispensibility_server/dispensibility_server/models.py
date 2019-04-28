@@ -44,10 +44,9 @@ class DispenserTransactionEvent(db.Model):
 class UserTransaction(db.Model):
   __tablename__ = 'user_transaction'
   id = db.Column('id', Integer, primary_key=True)
-  user_uid™ = db.Column('user_uid', ForeignKey("user.uid"), nullable=False)
+  user_uid = db.Column('user_uid', ForeignKey("user.uid"), nullable=False)
   dispenser_id = db.Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
   product_id = db.Column('product_id', ForeignKey("product.id"), nullable=False)
   weight = db.Column('weight', Integer())
   cost = db.Column('cost', Float())
   timestamp = db.Column('timestamp', DateTime())
-
