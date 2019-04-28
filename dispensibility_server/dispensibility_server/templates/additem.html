@@ -9,20 +9,8 @@
 <video class="mw-100" autoplay="true" id="videoElement">
 </video>
 
-<h1 class="text-center">Please scan the dispenser's barcode</h1>
-
-<script>
-var video = document.querySelector("#videoElement");
-
-if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-    })
-    .catch(function (err0r) {
-      console.log("Something went wrong!");
-    });
-}
-</script>
+<h1 class="text-center">Present barcode to dispenser:</h1>
+<a class="mx-auto d-block" style="width: 50%; margin-bottom:10px; cursor:default;"  rel='nofollow' href='https://www.qr-code-generator.com/a1/?gclid=EAIaIQobChMIjZfj2eby4QIVSLDtCh37oQx_EAAYASAAEgJkG_D_BwE
+        ' border='0'><img src='https://chart.googleapis.com/chart?cht=qr&chl=user%3A%20illy%0Apassword%3A%20pass&chs=180x180&choe=UTF-8&chld=L|2' alt=''></a>
 
 {% endblock %}

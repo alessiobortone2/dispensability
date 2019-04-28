@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 
+USER_ID = 1
 app = Flask(__name__, instance_relative_config=True)
 
 app.config.from_object('config') # load default
@@ -31,13 +32,22 @@ if not exists:
                     density = 2.51,
                     price_per_gram = 0.0059)
 
+  almonds = Product(name = 'Almonds',
+                    allergens = 'May contain almonds.',
+                    description = 'Delicious and nutrituous oats! Also healthy!',
+                    density = 4.51,
+                    price_per_gram = 0.008)
+
   db.session.add_all([user,
-                      oats])
+                      oats,
+                      almonds])
 
   db.session.commit()
 
-  dispenser = Dispenser(product_id = oats.id)
-  db.session.add(dispenser)
+  dispenser_1 = Dispenser(product_id = oats.id)
+  dispenser_2 = Dispenser(product_id = almonds.id)
+  db.session.add_all([dispenser_1,
+                      dispenser_2])
   db.session.commit()
 
 from dispensibility_server import views

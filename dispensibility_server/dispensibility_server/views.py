@@ -1,4 +1,4 @@
-from dispensibility_server import app, db
+from dispensibility_server import app, db, USER_ID
 from dispensibility_server.models import *
 from flask import render_template, url_for, abort, request, redirect, jsonify
 from datetime import datetime
@@ -9,7 +9,14 @@ def index():
 
 @app.route("/myitems")
 def myitems():
-    return render_template("myitems.html")
+    user = db.session.query(User).filter(User.uid==USER_ID).first()
+    transactions = db.session.query(UserTransaction).filter(UserTransaction.user_uid==USER_ID).all()
+    products = [{'name': db.session.query(Product).filter(Product.id==transaction.product_id).first().name,
+                'weight': transaction.weight,
+                'cost': transaction.cost} \
+            for transaction in transactions]
+    print(products)
+    return render_template("myitems.html", my_products=products)
 
 @app.route("/purchase")
 def purchase():
