@@ -12,19 +12,19 @@
             <div class="container">
                     <div class="row">
                         <div class="col">
-                            <h1>Home</h1>
+                            <h1>{% block page_title %}{% endblock %}</h1>
                         </div>
                         <div class="col">
                             <button type="button" class="btn btn-default btn-xl float-right">
-                                    <i style="font-size: 30px; padding-top:5px;" class="fas fa-shopping-cart"></i>
-                                </button>
+                                <i style="font-size: 30px; padding-top:5px;" class="fas fa-shopping-cart"></i>
+                            </button>
                             <button type="button" class="btn btn-default btn-xl float-right">
                                 <i style="font-size: 30px; padding-top:5px;" class="fas fa-cog"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                
+
         {% block content %}{% endblock %}
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 
-{% block title %}Dispensibility{% endblock %}
+{% block title %}Dispensability{% endblock %}
+{% block page_title %}Home{% endblock %}
+
 
 {% block content %}
     <a href="/myitems" class="btn btn-primary btn-lg btn-block">My Items</a>
     <button type="button" class="btn btn-primary btn-lg btn-block">Discover</button>
     <button type="button" class="btn btn-primary btn-lg btn-block">Expiry Calendar</button>
-    <button type="button" class="btn btn-primary btn-lg btn-block">Create Shopping List</button>
+    <a href="/purchase" class="btn btn-primary btn-lg btn-block">Purchase</a>
 
 {% endblock %}
