@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block title %}Dispensability{% endblock %}
+{% block page_title %}Home{% endblock %}
+
+
+{% block content %}
+    <button class="btn btn-primary" onclick="dispense(1, 1, 2000)"></button>
+    <button class="btn btn-primary" onclick="dispense(2, 1, 1300)"></button>
+
+    <script type="text/javascript">
+    function dispense(dispense_id, user_id, weight)
+    {
+        jQuery.post(
+            "http://104.248.161.128:5000/api/dispense_transaction",
+            {
+                "dispenser_id":dispense_id,
+                "user_id":user_id,
+                "event":0,
+                "weight":weight,
+                "timestamp":new Date().toJSON()
+            }
+        )
+
+        jQuery.post(
+            "http://104.248.161.128:5000/api/dispense_transaction",
+            {
+                "dispenser_id":dispense_id,
+                "user_id":user_id,
+                "event":1,
+                "weight":weight/4,
+                "timestamp":new Date().toJSON()
+            }
+        )
+    }
+    </script>
+{% endblock %}

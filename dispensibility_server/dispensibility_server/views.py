@@ -25,6 +25,10 @@ def purchase():
 @app.route("/additem")
 def additem():
     return render_template("additem.html")
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
     
 @app.route('/api/dispense_transaction', methods=['POST'])
 def dispense_transaction():
