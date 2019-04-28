@@ -36,11 +36,11 @@ def dispense_transaction():
     timestamp = data.get('timestamp',None)
 
     print(data)
-    assert type(dispenser_id).__name__ == 'int', "Dispenser_id ({}) not integer or is None".format(dispenser_id)
-    assert type(user_id).__name__ == 'int', "User_id ({}) not integer or is None".format(user_id)
-    assert type(event).__name__ == 'int', "Event ({}) not integer or is None".format(event)
-    assert type(weight).__name__ == 'int', "Weight ({}) not integer or is None".format(weight)
-    assert type(timestamp).__name__ == 'unicode', "Timestamp ({}) not string or is None".format(timestamp)
+    # assert type(dispenser_id).__name__ == 'int', "Dispenser_id ({}) not integer or is None".format(dispenser_id)
+    # assert type(user_id).__name__ == 'int', "User_id ({}) not integer or is None".format(user_id)
+    # assert type(event).__name__ == 'int', "Event ({}) not integer or is None".format(event)
+    # assert type(weight).__name__ == 'int', "Weight ({}) not integer or is None".format(weight)
+    # assert type(timestamp).__name__ == 'unicode', "Timestamp ({}) not string or is None".format(timestamp)
 
     dispenser = db.session.query(Dispenser).filter(Dispenser.id==dispenser_id).first()
     product = db.session.query(Product).filter(Product.id==dispenser.product_id).first()
