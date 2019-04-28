@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %}Purchase{% endblock %}
+{% block page_title %}Purchase{% endblock %}
+
+{% block content %}
+
+<div class="col-md-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Oats</td>
+                <td>500g</td>
+                <td>£0.70</td>
+            </tr>
+            <tr>
+                <td>Coffee</td>
+                <td>200g</td>
+                <td>£2.00</td>
+            </tr>
+            <tr>
+                <td>Fusilli</td>
+                <td>1000g</td>
+                <td>£3.60</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/additem" class="btn btn-primary btn-block" style="color: white;">
+        Add Item <i class="fas fa-plus-circle"></i>    
+    </a>
+</div>
+<div class="text-center fixed-bottom">
+    <h1>Total: £6.30</h1>
+</div>
+
+{% endblock %}

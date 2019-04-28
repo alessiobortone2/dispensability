@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block title %}Purchase{% endblock %}
+{% block page_title %}Purchase{% endblock %}
+
+{% block content %}
+
+<video class="mw-100" autoplay="true" id="videoElement">
+</video>
+
+<h1 class="text-center">Please scan the dispenser's barcode</h1>
+
+<script>
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
+
+{% endblock %}
