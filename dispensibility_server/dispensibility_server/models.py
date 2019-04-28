@@ -25,6 +25,14 @@ class Product(db.Model):
   density = db.Column('density',Float()) # grams/cm**3
   price_per_gram = db.Column('price_per_gram',Float())
 
+  def to_dict(self):
+    return {'id': self.id,
+            'name': self.name,
+            'allergens' : self.allergens,
+            'description': self.description,
+            'density': self.density,
+            'price_per_gram': self.price_per_gram}
+
 class Refill(db.Model):
   __tablename__ = 'refill'
   id = db.Column('id', Integer, primary_key=True)
