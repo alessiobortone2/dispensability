@@ -5,10 +5,12 @@
 {% block page_title %}My Items{% endblock %}
 
 {% block content %}
-<img class="mx-auto d-block" style="width: 50%; margin-bottom:10px;" src="{{ url_for('static', filename = 'img/calendar.jpg') }}" />
-
-<h3>Milk - £0.70 - 1 Hour</h3>
-<h3>Oats - £0.50</h3>
-<h3>Coffee - £1.80</h3>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Milk</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Use By: 30/4/19</h6>
+        <p class="card-text">Quantity: 1L</p>
+    </div>
+</div>
 
 {% endblock %}
