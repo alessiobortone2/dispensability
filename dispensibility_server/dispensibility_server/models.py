@@ -19,10 +19,19 @@ class Dispenser(db.Model):
 class Product(db.Model):
   __tablename__ = 'product'
   id = db.Column('id', Integer, primary_key=True)
+  name = db.Column('name', String(500))
   allergens = db.Column('allergens', String(1000))
   description = db.Column('description', String(1000))
-  density = db.Column('density',Float())
+  density = db.Column('density',Float()) # grams/cm**3
   price_per_gram = db.Column('price_per_gram',Float())
+
+  def to_dict(self):
+    return {'id': self.id,
+            'name': self.name,
+            'allergens' : self.allergens,
+            'description': self.description,
+            'density': self.density,
+            'price_per_gram': self.price_per_gram}
 
 class Refill(db.Model):
   __tablename__ = 'refill'
@@ -34,16 +43,16 @@ class Refill(db.Model):
 class DispenserTransactionEvent(db.Model):
   __tablename__ = 'dispenser_transaction_event'
   id = db.Column('id', Integer, primary_key=True)
-  user_id = db.Column('user_id', ForeignKey("user.uid"), nullable=False)
+  user_uid = db.Column('user_uid', ForeignKey("user.uid"), nullable=False)
   dispenser_id = db.Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
-  event = db.Column('event', String())
+  event = db.Column('event', Integer())
   weight = db.Column('weight', Integer())
   timestamp = db.Column('timestamp', DateTime())
 
 class UserTransaction(db.Model):
   __tablename__ = 'user_transaction'
   id = db.Column('id', Integer, primary_key=True)
-  user_id = db.Column('user_id', ForeignKey("user.uid"), nullable=False)
+  user_uid = db.Column('user_uid', ForeignKey("user.uid"), nullable=False)
   dispenser_id = db.Column('dispenser_id', ForeignKey("dispenser.id"), nullable=False)
   product_id = db.Column('product_id', ForeignKey("product.id"), nullable=False)
   weight = db.Column('weight', Integer())
